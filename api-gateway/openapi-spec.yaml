@@ -1,1 +1,33 @@
+openapi: "3.0.1"
+info:
+  title: Top G AI Inference API
+  version: "1.0"
+
+paths:
+  /predict:
+    post:
+      summary: Get model predictions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input:
+                  type: array
+                  items:
+                    type: number
+      responses:
+        '200':
+          description: Prediction result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prediction:
+                    type: string
+
+components: {}
 
