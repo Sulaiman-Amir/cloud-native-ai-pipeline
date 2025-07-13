@@ -28,55 +28,25 @@ This project demonstrates a **fully serverless, scalable, and production-ready A
 
 ---
 
-## 📁 Project Structure
-
 
 ---
 
-## 🧠 Model Flow
+# 📦 MODEL FLOW (Train → Deploy → Infra → Inference)
 
-1. **Training Phase**
-   - You use `sagemaker/train_model.py` to train a simple ML model (e.g., classifier or regressor).
-   - Model artifacts are saved in SageMaker's managed environment or S3.
-
-2. **Deployment Phase**
-   - `sagemaker/deploy_model.py` creates a SageMaker endpoint using the trained model.
-   - The endpoint can be invoked in real-time.
-
-3. **Inference Phase**
-   - Incoming requests hit the **API Gateway** endpoint.
-   - API triggers the **Lambda** function (`inference_handler.py`) which invokes the SageMaker model.
-   - Predictions are returned as JSON.
-
----
-
-## 📦 Deployment Guide
-
-### 🔹 1. Train Model
-
+# 1️⃣ Train Model
 cd sagemaker/
 pip install -r requirements.txt
 python train_model.py
 
-
-🔹 2. Deploy Model Endpoint
+# 2️⃣ Deploy SageMaker Model Endpoint
 python deploy_model.py
 
-
-🔹 3. Deploy Infrastructure
-cd terraform/
+# 3️⃣ Provision Infrastructure via Terraform
+cd ../terraform/
 terraform init
 terraform apply
-Make sure to set:
 
-SAGEMAKER_ENDPOINT in Lambda’s environment variables
-
-🔹 4. Trigger Inference
-Make a POST request:
-
-bash
-Copy
-Edit
+# 4️⃣ Trigger Inference via API Gateway
 curl -X POST https://<api-gateway-url>/predict \
      -H "Content-Type: application/json" \
      -d '{"input": [1.5, 2.3, 3.1]}'
@@ -126,5 +96,7 @@ M. Sulaiman Amir
 All Rights Reserved © 2025.
 This code is for demonstration and educational purposes only.
 You may not copy, modify, distribute, or use it in production without permission.
+
+---
 
 
